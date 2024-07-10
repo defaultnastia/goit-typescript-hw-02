@@ -1,25 +1,31 @@
 import { useEffect, useState } from "react";
-import { noImagesToast, oopsToast, sameKeyToast } from "./service/toasts.js";
 import { Toaster } from "react-hot-toast";
-import { fetchUnsplashPhotos } from "./service/photosUnsplashAPI.js";
 
-import SearchBar from "./components/SearchBar/SearchBar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/ImageModal/ImageModal";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import Loader from "./components/Loader/Loader";
+import {
+  noImagesToast,
+  oopsToast,
+  sameKeyToast,
+} from "../../service/toasts.js";
+import { fetchUnsplashPhotos } from "../../service/photosUnsplashAPI.js";
+
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
+import { GalleryImage } from "../ImageCard/ImageCard.types.js";
 
 const App = () => {
   const [key, setKey] = useState("");
-  const [images, setImages] = useState([]);
-  const [modalData, setModalData] = useState(null);
+  const [images, setImages] = useState<GalleryImage[]>([]);
+  const [modalData, setModalData] = useState<GalleryImage | null>(null);
   const [loader, setLoader] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<false | string>(false);
 
-  const handleSearch = (keyword) => {
+  const handleSearch = (keyword: string): void => {
     if (keyword === key) {
       sameKeyToast(key);
       return;
@@ -34,7 +40,7 @@ const App = () => {
     setPage((prev) => prev + 1);
   };
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: GalleryImage): void => {
     setModalData(image);
   };
 
@@ -56,9 +62,9 @@ const App = () => {
           noImagesToast(key);
           return;
         }
-        setImages((prev) => [...prev, ...results]);
+        setImages((prev: GalleryImage[]) => [...prev, ...results]);
         setLoadMore(page < total_pages);
-      } catch (error) {
+      } catch (error: any) {
         oopsToast();
         setError(error.message);
       } finally {

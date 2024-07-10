@@ -1,4 +1,6 @@
-const ImageCard = ({ image, handleImageClick }) => {
+import { ImageCardProps } from "./ImageCard.types";
+
+const ImageCard = ({ image, handleImageClick }: ImageCardProps) => {
   return (
     <>
       <img

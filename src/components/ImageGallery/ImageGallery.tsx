@@ -1,6 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
+import { ImageGalleryProps } from "./ImageGallery.types";
 
-const ImageGallery = ({ images, handleImageClick }) => {
+const ImageGallery = ({ images, handleImageClick }: ImageGalleryProps) => {
   return (
     <ul className="flex flex-wrap gap-10 p-10 mx-auto max-w-7xl items-center justify-center drop-shadow-lg">
       {images.map((image) => {

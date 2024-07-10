@@ -1,12 +1,17 @@
 import { Field, Formik, Form } from "formik";
 import { emptyFieldToast } from "../../service/toasts";
+import {
+  HandleSubmitFoo,
+  SearchValue,
+  SearchBarProps,
+} from "./SearchBar.types";
 
-const initialValues = {
+const initialValues: SearchValue = {
   keyword: "",
 };
 
-const SearchBar = ({ handleSearch }) => {
-  const handleSubmit = (values, actions) => {
+const SearchBar = ({ handleSearch }: SearchBarProps) => {
+  const handleSubmit: HandleSubmitFoo = (values, actions) => {
     if (!values.keyword) {
       emptyFieldToast();
       return;

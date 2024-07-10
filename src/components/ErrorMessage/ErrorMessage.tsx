@@ -1,4 +1,6 @@
-const ErrorMessage = ({ error }) => {
+import { ErrorMessageProps } from "./ErrorMessage.types";
+
+const ErrorMessage = ({ error }: ErrorMessageProps) => {
   return (
     <div className="h-dvh flex items-center justify-center">
       <p className="text-center p-10 text-lg">

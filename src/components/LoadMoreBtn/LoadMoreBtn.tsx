@@ -1,4 +1,6 @@
-const LoadMoreBtn = ({ handleLoadMore }) => {
+import { LoadMoreBtnProps } from "./LoadMoreBtn.types";
+
+const LoadMoreBtn = ({ handleLoadMore }: LoadMoreBtnProps) => {
   return (
     <button
       onClick={handleLoadMore}
